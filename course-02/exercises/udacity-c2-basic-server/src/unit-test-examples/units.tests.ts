@@ -1,7 +1,19 @@
-import { add, divide } from './units';
+import { add, divide, concat} from './units';
 
 import { expect } from 'chai';
 import 'mocha';
+
+describe('concat',() => {
+  
+  it('should combine two strings',() => {
+    const result = concat("ry","an");
+    expect(result).to.equal("ryan");
+  });
+
+  it('should throw an error if a string is empty',() => {
+    expect(() => {concat("","f")}).to.throw('empty string');
+  });
+});
 
 describe('add function', () => {
 
