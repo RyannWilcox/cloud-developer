@@ -50,14 +50,12 @@ router.patch('/:id',
         return res.status(404).send('no body provided');
     }
 
-    if(caption){
-        item.caption = caption;
-    }
-    if(url){
-        item.url = url;
-    }
+    const patchedItem = await FeedItem.update(
+        {url: url,caption: caption},
+        {returning: true, where: {id : item.id}}
+    );
 
-    const patchedItem = await item.save();
+    //const patchedItem = await item.save();
     // 201 might be the wrong status code here
     return res.status(201).send(patchedItem);
 });
